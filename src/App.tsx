@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import { Header } from './components/layout/Header';
-import { useTutorialMode } from './hooks/useTutorialMode';
 import { OnboardingFlow } from './components/onboarding/OnboardingFlow';
 import { DjWorkspace } from './components/workspace/DjWorkspace';
 import { LearnPage } from './components/learn/LearnPage';
@@ -33,7 +32,6 @@ export default function App() {
   const [deckB, setDeckB] = useState<DeckData | null>(null);
   const [analysisMap, setAnalysisMap] = useState<Map<string, AnalysisResult>>(new Map());
   const [pendingDeck, setPendingDeck] = useState<DeckId>('A');
-  const { tutorialEnabled, toggleTutorial } = useTutorialMode();
 
   // Legacy: keep single-track state for onboarding flow
   const [onboardingTrack, setOnboardingTrack] = useState<{ track: Track; blob: Blob } | null>(null);
@@ -194,7 +192,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-bg-primary flex flex-col">
-      <Header tutorialEnabled={tutorialEnabled} onToggleTutorial={toggleTutorial} />
+      <Header />
       <main className="flex-1">
         {view === 'onboarding' && (
           <OnboardingFlow
@@ -249,7 +247,7 @@ export default function App() {
             onDeleteTrack={deleteTrack}
             onUploadFile={handleWorkspaceUpload}
             onUploadFileToDeck={handleUploadAndLoadToDeck}
-            tutorialEnabled={tutorialEnabled}
+            tutorialEnabled={true}
             onResumeSession={handleResumeSession}
             onDismissTip={dismissTip}
             dismissedTips={session?.dismissedTips}
