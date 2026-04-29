@@ -36,7 +36,7 @@ export function LearnPage({
   analysisProgress,
   pendingDeck,
   onLoadTrackToDeck,
-  onSelectTrack,
+  // onSelectTrack, // TODO: use when implementing track selection feature
   onDeleteTrack,
   onUploadFile,
   onPositionChange,

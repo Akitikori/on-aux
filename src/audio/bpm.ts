@@ -290,7 +290,6 @@ export async function detectBPM(buffer: AudioBuffer): Promise<BpmResult> {
   for (let p = 0; p < bPhaseLag; p++) {
     if (bPhaseSums[p] > maxBroadSum) { maxBroadSum = bPhaseSums[p]; bestBroadIdx = p; }
   }
-  const hopSeconds = hopSize / dsRate;
   const broadbandPhase = bestBroadIdx * fineHopSec;
 
   // Score both candidates by summing fine-grained broadband onset energy at predicted

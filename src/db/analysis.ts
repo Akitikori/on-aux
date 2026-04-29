@@ -8,7 +8,7 @@ export async function saveAnalysis(analysis: AnalysisResult): Promise<void> {
 
 export async function getAnalysis(trackId: string): Promise<AnalysisResult | undefined> {
   const db = await getDB();
-  const result = await db.get('analysis', trackId);
+  const result = await db.get('analysis', trackId) as Partial<AnalysisResult>;
   if (!result) return undefined;
   // Ensure backwards compat for records without these fields
   return {
